@@ -54,7 +54,7 @@
                                         </select>
                                     </div>
                                     <div class="input-group ">
-                                        <select name="path" class="form-control">
+                                        <select name="path" id="select_path" class="form-control">
                                             `+ path_option +`
                                         </select>
                                     </div>

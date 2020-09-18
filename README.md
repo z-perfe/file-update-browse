@@ -6,10 +6,10 @@ laravel-admin file-update-browse
 其他数据表中 beLongsTo 此文件表。
 
 
-![表单页](https://github.com/zhpefe/file-update-browse/raw/master/image_0.jpg)
+![表单页](https://github.com/zhpefe/file-update-browse/blob/master/image_0.JPG)
 
 
-![弹出](https://github.com/zhpefe/file-update-browse/raw/master/image_1.jpg)
+![弹出](https://github.com/zhpefe/file-update-browse/blob/master/image_1.JPG)
 
 ### 使用
 

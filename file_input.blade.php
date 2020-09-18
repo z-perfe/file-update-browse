@@ -1,8 +1,32 @@
 <script>
     $(function () {
-        var upload_post_url = '/api/admin/upload_file';
+        var upload_post_url = '/api/admin/upload';
         var upload_list_url = '/api/admin/file_list';
         var upload_post_ext_url = '/api/admin/add_ext_file';
+
+        var type = {
+            image : '图片',
+            video : '视频',
+            file : '文档'
+        };
+        var path = {
+            goods: '商品相关',
+            adv: '广告相关',
+            shop: '店铺相关',
+            page: '页面相关',
+            icon: '图标',
+            other: '其他'
+        };
+        var is_image_ext = ["jpg", "png", "gif", "jpeg"];
+        var is_video_ext = ["mp4"];
+
+        var type_option = '', path_option = '';
+        Object.keys(type).forEach((i) => {
+            type_option += '<option value="' + i + '">'+ type[i] +'</option>';
+        });
+        Object.keys(path).forEach((i) => {
+            path_option += '<option value="' + i + '">'+ path[i] +'</option>';
+        });
         var modal = `
         <div class="modal fade" id="image_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -26,19 +50,12 @@
                                     </div>
                                     <div class="input-group ">
                                         <select name="type" id="select_type" class="form-control">
-                                            <option value="image">图片</option>
-                                            <option value="video">视频</option>
-                                            <option value="file">文档</option>
+                                            `+ type_option +`
                                         </select>
                                     </div>
                                     <div class="input-group ">
                                         <select name="path" class="form-control">
-                                            <option value="goods">商品相关</option>
-                                            <option value="adv">广告相关</option>
-                                            <option value="shop">店铺相关</option>
-                                            <option value="page">页面相关</option>
-                                            <option value="icon">图标</option>
-                                            <option value="other">其他</option>
+                                            `+ path_option +`
                                         </select>
                                     </div>
                                     <div class="input-group">
@@ -58,20 +75,12 @@
                                 <div class="form-inline">
                                     <div class="input-group ">
                                         <select name="type" id="select_show_type" class="form-control">
-                                            <option value="image" selected>图片</option>
-                                            <option value="video">视频</option>
-                                            <option value="file">文档</option>
+                                            `+ type_option +`
                                         </select>
                                     </div>
                                     <div class="input-group ">
                                         <select name="path" class="form-control" id="select_show_path">
-                                            <option value="goods" selected>商品相关</option>
-                                            <option value="adv">广告相关</option>
-                                            <option value="shop">店铺相关</option>
-                                            <option value="page">页面相关</option>
-                                            <option value="icon">图标</option>
-                                            <option value="other">其他</option>
-                                            <option value="external">外部文件</option>
+                                            `+ path_option +`
                                         </select>
                                     </div>
                                     <div class="input-group pull-right">
@@ -151,7 +160,6 @@
                     </li>
                 </ul>`);
             if (_this.val() && _this.data('urls')) {
-                console.log('y');
                 ids = _this.val().split(',');
                 urls = _this.data('urls').split(',');
                 urls.forEach(function(val, index) {
@@ -160,18 +168,16 @@
             }
         });
         var select_file_list = '';
-        var is_image = (f) => {
-            var arr = ["jpg", "png", "gif", "jpeg"];
+        var is_image = (f) => {            ;
             var ext = f.substr(f.lastIndexOf(".") + 1);
-            if (arr.indexOf(ext) > -1) {
+            if (is_image_ext.indexOf(ext) > -1) {
                 return true;
             }
             return false;
         };
         var is_video = (f) => {
-            var arr = ["mp4"];
             var ext = f.substr(f.lastIndexOf(".") + 1);
-            if (arr.indexOf(ext) > -1) {
+            if (is_video_ext.indexOf(ext) > -1) {
                 return true;
             }
             return false;

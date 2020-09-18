@@ -342,6 +342,7 @@
                         } else {
                             toastr.error('上传错误');
                         }
+                        $('#add_ext_file').val('');
                         $('#image_modal').modal('hide');
                     }
                 )

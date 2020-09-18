@@ -159,6 +159,9 @@
                         <i class="fa fa-plus-circle"></i>
                     </li>
                 </ul>`);
+            if (_this.val() == 0) {
+                _this.val('');
+            }
             if (_this.val() && _this.data('urls')) {
                 ids = _this.val().split(',');
                 urls = _this.data('urls').split(',');

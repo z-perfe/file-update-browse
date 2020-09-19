@@ -1,10 +1,8 @@
 laravel-admin file-update-browse
 ======
 
-基于laravel-admin 框架， 表单的图片上传和浏览插件。需求是 图片等静态文件要求放在数据表中统一管理，
+基于laravel-admin 框架， 表单的图片上传和浏览的JS插件。需求是图片等静态文件要求放在数据表中统一管理，
 上传可以选择本地文件或浏览服务器中已有列表。
-其他数据表中 beLongsTo 此文件表。
-
 
 ![表单页](https://github.com/zhpefe/file-update-browse/blob/master/image_0.JPG)
 
@@ -13,7 +11,12 @@ laravel-admin file-update-browse
 
 ### 使用
 
-* 将 file_input.blade.php 放置在 Laravel 的 resources/view 目录，例： admin/file_input.blade.php
+* 下载 js 和 css 文件，并放置在 public 目录下
+* 在 app/Admin/bootstrap.php 添加 
+```php
+Admin::css('/css/update_file_input.css');
+Admin::js('/js/update_file_input.js');
+```
 * 创建文件数据表，例
 ```
 CREATE TABLE `files` (
@@ -33,6 +36,7 @@ var upload_post_ext_url = '/api/admin/add_ext_file'; // 外部地址的提交（
 
 ```php
 function updateFile(Request $request){
+    $files = $request->file('file');
     /*...*/
     return [["id"=> 'id', "url"=> "url"], ];
 }
@@ -57,14 +61,13 @@ $attribute = [
 $files = $form->isEditing() ? 
     $form->model()->find(request()->route()->parameter('路由参数'))->file()->get()->toArray() : 
     []; // belongsTo 关联
-if (count($files)) {
-    $attribute['data-ids'] = implode(',', array_column($files,'id'));
+if (count($files)) {    
     // full_url 是 File 模型中$appends的字段，是文件地址的Storage::disk(config('admin.upload.disk'))->url($path) 
     $attribute['data-urls'] = implode(',', array_column($files,'full_url'));
 }
 $form->text('column', 'label')->attribute($attribute);
-// 添加JS
-Admin::script(preg_replace('/<\/?script>/i','', view('admin.file_input')->render()));
+// 添加JS, PJAX真是让人头大，需要这样调用，否则页面可能需要刷新。
+Admin::script(';update_init();');
 ```
 
 * 或可以做成laravel-admin 扩展，因时间有限，只是临时解决方案。

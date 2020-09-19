@@ -108,7 +108,7 @@ var modal = `
         </div>
         </div>
         `;
-var update_init = () => {
+var upload_file_init = () => {
     $('body').append(modal);
     image_list(1);
     $('.upload-file-input').each(function () {

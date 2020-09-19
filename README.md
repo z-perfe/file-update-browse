@@ -26,7 +26,7 @@ CREATE TABLE `files` (
   `url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
-* 创建所用的API，需要三个，地址可在file_input.blade.php中自己修改：
+* 创建所用的API，需要三个，地址可在update_file_input.js中自己修改：
 ```javascript
 var upload_post_url = '/api/admin/upload_file'; // 上传
 var upload_list_url = '/api/admin/file_list'; // 图片列表

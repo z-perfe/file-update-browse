@@ -67,7 +67,7 @@ if (count($files)) {
 }
 $form->text('column', 'label')->attribute($attribute);
 // 添加JS, PJAX真是让人头大，需要这样调用，否则页面可能需要刷新。
-Admin::script(';update_init();');
+Admin::script(';upload_file_init();');
 ```
 
 * 或可以做成laravel-admin 扩展，因时间有限，只是临时解决方案。

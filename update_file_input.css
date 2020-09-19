@@ -1,0 +1,81 @@
+.image_ul{
+    padding: 0; margin: 0;
+    list-style: none;
+    text-align: center;
+}
+li.image_bg{
+    border:1px solid #e1e1e1;
+    box-shadow: 0 0 10px #aaa;
+    margin: 10px;
+    float: left;
+    width: 150px;
+    height:180px;
+}
+.image_bg_sm li.image_bg{
+    box-shadow: 0 0 5px #aaa;
+    margin: 10px;
+    float: left;
+    width: 70px;
+    height:100px;
+}
+li.file_bg{
+    border:1px solid #e1e1e1;
+    box-shadow: 0 0 10px #aaa;
+    margin: 10px;
+    float: left;
+    width: 150px;
+    height:80px;
+}
+.image_bg .img{
+    width: 130px;
+    height:130px;
+    margin:10px;
+}
+.image_bg_sm .image_bg .img{
+    width: 50px;
+    height:50px;
+}
+.add_image {
+    font-size:100px;
+    color:#ddd;
+    cursor: pointer;
+}
+.add_image:hover {
+    font-size:100px;
+    color:#aaa;
+}
+.image_bg_sm .add_image {
+    font-size:20px;
+    color:#ddd;
+    cursor: pointer;
+}
+.image_bg_sm .add_image:hover {
+    color:#aaa;
+}
+#select_file_list img{
+    width:32px;
+    height: 32px;
+    margin-right: 5px;
+    float: left;
+}
+
+#image_list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.list_image{
+    width: 100px;
+    height: 100px;
+    border: 2px solid #e1e1e1;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+}
+.list_image img{
+    width:96px;
+    height: 96px;
+}
+.list_image.active{
+    border: 2px solid #ff0000;
+}
